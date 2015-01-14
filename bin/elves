@@ -1,0 +1,103 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var program = require('commander')
+    , path = require('path')
+    , fs = require('fs')
+    , cwd = process.cwd()
+    , server = require('../lib/server')
+    , Runner = require('../lib/runner');
+
+// options
+program
+    .version(JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8')).version)
+    .usage('[options]' +
+        '\n' +
+        '         elve [options] <config>' +
+        '\n' +
+        '         elve [options] <caseUrl>' +
+        '\n' +
+        '         elve [options] <caseUrl> <pageUrl>')
+    .option('-r, --remoteServer', "take test on remote server")
+    .option('-d, --localServer <url>', "local server domain name")
+    .option('-c, --configFile <file>', "config file path. defaults to test/config.json")
+    .parse(process.argv);
+
+program.configFile = program.configFile || "test/config.json";
+program.localServer = program.localServer || "http://localhost:3000";
+
+var config = [];
+
+//server start
+switch(program.args.length) {
+    case 0:
+        //search test/config.json
+        if(config = configHandler()) {
+            break;
+        }
+        //search test/index.js
+        if(config = caseHandler("/test/index.js")) {
+            config = [config];
+            break;
+        }
+        break;
+    case 1:
+    case 2:
+        if(config = caseHandler(program.args[0], program.args[1])) {
+            config = [config];
+            break;
+        }
+        break;
+}
+
+if( !config || !config.length > 0 ) {
+    console.log("there is no case to run!");
+    process.exit(1);
+}
+
+server.install();
+
+Runner(config).on("end", function() {
+    server.close();
+});
+
+//=== util ===
+
+function configHandler(configPath) {
+    configPath = configPath || path.join(cwd, program.configFile);
+
+    var config;
+
+    if(fs.existsSync(configPath)) {
+        config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+
+        config.forEach(function(item) {
+            item = caseHandler(item.caseUrl, item.pageUrl);
+        });
+        config.filter(function(item) {
+            return item != null;
+        });
+
+        return config;
+    }
+    return null;
+}
+
+function caseHandler(caseUrl, pageUrl) {
+    caseUrl = path.join(cwd, caseUrl);
+    pageUrl = pageUrl || "node_modules/elves/page/test.html";
+    if(!program.remoteServer) {
+        pageUrl = path.join(program.localServer, __dirname.replace(cwd, ""), "../page/test.html");
+    }
+    if(fs.existsSync(caseUrl)) {
+        return {
+            pageUrl: pageUrl,
+            caseUrl: caseUrl
+        };
+    }
+    console.log(caseUrl + " is not exist!");
+    return null;
+}
