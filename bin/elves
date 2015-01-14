@@ -74,10 +74,11 @@ function configHandler(configPath) {
     if(fs.existsSync(configPath)) {
         config = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
-        config.forEach(function(item) {
-            item = caseHandler(item.caseUrl, item.pageUrl);
+        config.forEach(function(item, i) {
+            config[i] = caseHandler(item.caseUrl, item.pageUrl);
         });
-        config.filter(function(item) {
+
+        config = config.filter(function(item) {
             return item != null;
         });
 
@@ -88,9 +89,12 @@ function configHandler(configPath) {
 
 function caseHandler(caseUrl, pageUrl) {
     caseUrl = path.join(cwd, caseUrl);
-    pageUrl = pageUrl || "node_modules/elves/page/test.html";
     if(!program.remoteServer) {
-        pageUrl = path.join(program.localServer, __dirname.replace(cwd, ""), "../page/test.html");
+        if(pageUrl) {
+            pageUrl = path.join(program.localServer,pageUrl);
+        } else {
+            pageUrl = path.join(program.localServer, __dirname.replace(cwd, ""), "../page/test.html");
+        }
     }
     if(fs.existsSync(caseUrl)) {
         return {
