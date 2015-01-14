@@ -16,11 +16,11 @@ program
     .version(JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8')).version)
     .usage('[options]' +
         '\n' +
-        '         elve [options] <config>' +
+        '         elves [options] <config>' +
         '\n' +
-        '         elve [options] <caseUrl>' +
+        '         elves [options] <caseUrl>' +
         '\n' +
-        '         elve [options] <caseUrl> <pageUrl>')
+        '         elves [options] <caseUrl> <pageUrl>')
     .option('-r, --remoteServer', "take test on remote server")
     .option('-d, --localServer <url>', "local server domain name")
     .option('-c, --configFile <file>', "config file path. defaults to test/config.json")
