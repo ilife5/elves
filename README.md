@@ -17,9 +17,9 @@ npm install elves
 
 ```
 Usage: elves [options]
-     elve [options] <config>
-     elve [options] <caseUrl>
-     elve [options] <caseUrl> <pageUrl>
+       elves [options] <config>
+       elves [options] <caseUrl>
+       elves [options] <caseUrl> <pageUrl>
 
 Options:
 
