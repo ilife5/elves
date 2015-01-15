@@ -1,6 +1,6 @@
 {
   "name": "elves",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "avalon.oniui test tool",
   "main": "index.js",
   "bin": "bin/elves",
