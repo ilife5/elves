@@ -1,15 +1,18 @@
 {
   "name": "elves",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "avalon.oniui test tool",
   "main": "index.js",
+  "repository": "https://github.com/ilife5/elves",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "avalon.oniui",
     "phantomJs",
-    "test"
+    "test",
+    "mocha",
+    "chai"
   ],
   "author": "ilife5",
   "license": "MIT",

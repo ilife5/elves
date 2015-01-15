@@ -17,9 +17,9 @@ npm install elves
 
 ```
 Usage: elves [options]
-     elve [options] <config>
-     elve [options] <caseUrl>
-     elve [options] <caseUrl> <pageUrl>
+       elves [options] <config>
+       elves [options] <caseUrl>
+       elves [options] <caseUrl> <pageUrl>
 
 Options:
 
@@ -29,5 +29,6 @@ Options:
 -d, --localServer <url>  local server domain and port
 -c, --configFile <file>  config file path. defaults to test/config.json
 ```
+
 
 
