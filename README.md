@@ -13,13 +13,13 @@ Based on **phantomJs**, support **mocha chai and jquery**。
 Use it as a command line tool.
 
 ```
-npm install elvese -g
+npm install elves -g
 ```
 
 If you only want to use it in a locally nodejs project.
 
 ```
-npm install --save
+npm install elves --save
 ```
 
 Elves depends on [Node.js](http://nodejs.org/) and [npm](http://npmjs.org/). Also make sure that [phantomJs](http://phantomjs.org/) is installed.
