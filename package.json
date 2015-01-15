@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "description": "avalon.oniui test tool",
   "main": "index.js",
+  "bin": "bin/elves",
   "repository": "https://github.com/ilife5/elves",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +28,7 @@
     "longjohn": "^0.2.4",
     "phantomjs": "^1.9.13",
     "phantom": "^0.7.1",
-    "promise": "^6.0.1"
+    "promise": "^6.0.1",
+    "chalk": "^0.5.1"
   }
 }

@@ -8,8 +8,8 @@ var program = require('commander')
     , path = require('path')
     , fs = require('fs')
     , cwd = process.cwd()
-    , server = require('../lib/server')
-    , Runner = require('../lib/runner');
+    , elves = require("..")
+    , chalk = require("chalk");
 
 // options
 program
@@ -22,7 +22,6 @@ program
         '\n' +
         '         elves [options] <caseUrl> <pageUrl>')
     .option('-r, --remoteServer', "take test on remote server")
-    .option('-d, --localServer <url>', "local server domain name")
     .option('-c, --configFile <file>', "config file path. defaults to test/config.json")
     .parse(process.argv);
 
@@ -37,6 +36,8 @@ switch(program.args.length) {
         //search test/config.json
         if(config = configHandler()) {
             break;
+        } else {
+            console.log(chalk.cyan("[elves log]  ") + "Can not find config.json");
         }
         //search test/index.js
         if(config = caseHandler("/test/index.js")) {
@@ -54,15 +55,13 @@ switch(program.args.length) {
 }
 
 if( !config || !config.length > 0 ) {
-    console.log("there is no case to run!");
+    console.log(chalk.cyan("[elves log]  ") + "There is no case to run!");
     process.exit(1);
 }
 
-server.install();
+elves.install();
 
-Runner(config).on("end", function() {
-    server.close();
-});
+elves.run(config);
 
 //=== util ===
 
@@ -93,15 +92,15 @@ function caseHandler(caseUrl, pageUrl) {
         if(pageUrl) {
             pageUrl = path.join(program.localServer,pageUrl);
         } else {
-            pageUrl = path.join(program.localServer, __dirname.replace(cwd, ""), "../page/test.html");
+            pageUrl = "";
         }
     }
-    if(fs.existsSync(caseUrl)) {
+    if(fs.existsSync(caseUrl) && fs.lstatSync(caseUrl).isFile()) {
         return {
             pageUrl: pageUrl,
             caseUrl: caseUrl
         };
     }
-    console.log(caseUrl + " is not exist!");
+    console.log(chalk.cyan("[elves log]  ") + caseUrl + " is not exist or not a file!");
     return null;
 }

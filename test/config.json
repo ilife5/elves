@@ -1,6 +1,5 @@
 [
     {
-        "pageUrl": "page/test.html",
-        "caseUrl": "test/index.js"
+        "caseUrl": "example/hello world/helloworld.js"
     }
 ]
