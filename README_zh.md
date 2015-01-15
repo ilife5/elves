@@ -1,32 +1,30 @@
 # elves
 
-> An easy, lightweight, headless test tool for avalon.oniui。
+> 用于avalon.oniui的测试工具，简单，轻量，headless。
 
-Based on **phantomJs**, support **mocha chai and jquery**。
+基于**phantomJs**, 支持 **mocha chai** 以及 **jquery**。 
 
 ![elves](https://raw.githubusercontent.com/ilife5/life/master/statics/images/elf.jpg)
 
-[中文文档](https://github.com/ilife5/elves/blob/master/README_zh.md)
+## 安装
 
-## Installation
+#### 从npm上获取
 
-#### install from npm
-
-Use it as a command line tool.
+全局初始化，可用于命令行工具。
 
 ```
 npm install elves -g
 ```
 
-If you only want to use it in a locally nodejs project.
+如果只是想用在本地的nodejs项目中。
 
 ```
 npm install elves --save
 ```
 
-Elves depends on [Node.js](http://nodejs.org/) and [npm](http://npmjs.org/). Also make sure that [phantomJs](http://phantomjs.org/) is installed.
+依赖于 [Node.js](http://nodejs.org/) 和 [npm](http://npmjs.org/). 并且确保[phantomJs](http://phantomjs.org/) 已经安装.
 
-## Usage
+## 用法
 
 
 ```
@@ -45,7 +43,7 @@ Options:
 
 ### hello world
 
-First, we set up a page and case.
+首先，我们创建一个**页面**以及**测试用例**。
 
 ```
 example/
@@ -82,13 +80,13 @@ describe("Hello world", function() {
 });
 ```
 
-Run the test
+在命令行中执行
 
 ```
 elves "example/hello world/helloworld.js" "example/hello world/helloworld.html"
 ```
 
-The report
+然后就可以看到测试结果了。如果执行失败，请先参考[安装](https://github.com/ilife5/elves/blob/master/README_zh.md#安装)。
 
 ```
   Hello world
@@ -98,20 +96,20 @@ The report
     ✔ 1 test complete (5ms)
 ```
 
-### cases only
+### 直接对用例进行测试
 
-In some scenarios，we just want to test pure javascript cases without a page。We can be achieved through the following ways。
+在某些场景中，我们不需要页面结构，测试纯粹的javascript用例。我们可以通过如下的方式执行。
 
 ```
 elves "example/case only/index.js"
 ```
 
-Elves will open an empty page for running cases.
+Elves在没有用户给出页面地址的时候，会自动的打开一个空白没有结构的页面对用力进行测试。
 
 
-### use config.json
+### 使用 config.json
 
-We can also use a config file in test folder.
+我们可以使用**test**目录下的**config.json**文件对测试进行配置。
 
 ```
 [
@@ -121,19 +119,19 @@ We can also use a config file in test folder.
 ]
 ```
 
-Run
+在根目录下执行
 
 ```
 elves
 ```
 
-Then we can get the reports.
+我们就可以得到测试结果了。
 
-### test on remote server
+### 在远程页面上测试用例
 
-Elves also support test on remote server. 
+Elves支持在远程页面上执行测试用例。
 
-Create case
+创建如下的case，测试去哪儿网首页的title是否符合期望。
 
 ```
 var expect = chai.expect;
@@ -145,13 +143,13 @@ describe("qunar", function() {
 });
 ```
 
-Run
+执行
 
 ```
 elves "example/remote server/remote server.js" "http://qunar.com" -r
 ```
 
-Then we can get the reports.
+即可得到测试结果
 
 ```
   qunar
@@ -160,3 +158,4 @@ Then we can get the reports.
 
     ✔ 1 test complete (6ms)
 ```
+
