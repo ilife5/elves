@@ -29,6 +29,7 @@
     "phantomjs": "^1.9.13",
     "phantom": "^0.7.1",
     "promise": "^6.0.1",
-    "chalk": "^0.5.1"
+    "chalk": "^0.5.1",
+    "chai-jquery": "^2.0.0"
   }
 }
