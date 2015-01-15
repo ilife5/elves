@@ -101,7 +101,7 @@ The report
 In some scenarios，we just want to test pure javascript cases without a page。We can be achieved through the following ways。
 
 ```
-elves "example/hello world/helloworld.js"
+elves "example/case only/index.js"
 ```
 
 Elves will open an empty page for running cases.
