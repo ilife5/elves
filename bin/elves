@@ -13,7 +13,7 @@ var program = require('commander')
 
 // options
 program
-    .version(JSON.parse(fs.readFileSync(path.join(cwd, 'package.json'), 'utf8')).version)
+    .version(JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8')).version)
     .usage('[options]' +
         '\n' +
         '         elves [options] <config>' +

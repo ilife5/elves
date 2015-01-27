@@ -6,5 +6,23 @@
 </head>
 <body>
     <p>hello world</p>
+    <script>
+        function myFunc() {
+            if (myFunc.caller == null) {
+                console.log('The function was called from the top!');
+            } else {
+                console.log('This function\'s caller was ' + myFunc.caller);
+            }
+        }
+
+        var a = {
+            b: myFunc
+        }
+
+        function b() {
+            a.b();
+        }
+        b();
+    </script>
 </body>
 </html>
