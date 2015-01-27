@@ -14,3 +14,17 @@ Delete the content of exports checking in chai, chai-jquery.
 
 Since Mocha.process is not a global variable，Update process to Mocha.process .
 
+> 0.0.5
+
++ bin/elves
+
+modify path of package.json
+
++ package.json
+
+delete jsdom dependency
+
++ hello world
+
+add hell world example
+
