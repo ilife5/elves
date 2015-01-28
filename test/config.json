@@ -1,5 +1,8 @@
 [
     {
         "caseUrl": "example/case only/caseonly.js"
-    }
+    }, {
+		"caseUrl": "example/hello world/helloworld.js",
+		"pageUrl": "example/hello world/helloworld.html"
+	}
 ]

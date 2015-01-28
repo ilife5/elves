@@ -90,7 +90,7 @@ function caseHandler(caseUrl, pageUrl) {
     caseUrl = path.join(cwd, caseUrl);
     if(!program.remoteServer) {
         if(pageUrl) {
-            pageUrl = path.join(program.localServer,pageUrl);
+            pageUrl = require("url").resolve(program.localServer,pageUrl);
         } else {
             pageUrl = "";
         }
