@@ -28,3 +28,8 @@ delete jsdom dependency
 
 add hell world example
 
+> 0.0.6
+
++ bin/elves 
+
+fix bug of join localserver address
