@@ -33,3 +33,11 @@ add hell world example
 + bin/elves 
 
 fix bug of join localserver address
+
+> 0.0.7
+
++ bin/elves
+
+support case search.
+
+If there is a xxx.case.js, then find the xxx.html. If match, generate the config.

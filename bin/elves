@@ -9,7 +9,8 @@ var program = require('commander')
     , fs = require('fs')
     , cwd = process.cwd()
     , elves = require("..")
-    , chalk = require("chalk");
+    , chalk = require("chalk")
+    , glob = require("glob");
 
 // options
 program
@@ -33,17 +34,29 @@ var config = [];
 //server start
 switch(program.args.length) {
     case 0:
+
+        //search *.case.js
+        console.log(chalk.cyan("[elves log]  ") + "Searching for *.case.js...");
+        if(config = matchHandler()) {
+            break;
+        } else {
+            console.log(chalk.cyan("[elves log]  ") + "Can not find *.case.js");
+        }
+
+        console.log(chalk.cyan("[elves log]  ") + "Searching for test/config.json...");
         //search test/config.json
         if(config = configHandler()) {
             break;
         } else {
-            console.log(chalk.cyan("[elves log]  ") + "Can not find config.json");
+            console.log(chalk.cyan("[elves log]  ") + "Can not find test/config.json...");
         }
+        console.log(chalk.cyan("[elves log]  ") + "Searching for test/index.js");
         //search test/index.js
         if(config = caseHandler("/test/index.js")) {
             config = [config];
             break;
         }
+
         break;
     case 1:
     case 2:
@@ -59,6 +72,7 @@ if( !config || !config.length > 0 ) {
     process.exit(1);
 }
 
+console.log(chalk.green("[elves log]  ") + config.length + " cases testing，");
 elves.install();
 
 elves.run(config);
@@ -103,4 +117,23 @@ function caseHandler(caseUrl, pageUrl) {
     }
     console.log(chalk.cyan("[elves log]  ") + caseUrl + " is not exist or not a file!");
     return null;
+}
+
+function matchHandler() {
+    var config = [],
+        cases = glob.sync("**/**.case.js");
+
+    config = cases.map(function(ca) {
+        var pageUrl = path.join(path.dirname(ca), path.basename(ca).match(/.*(?=case\.js)/)[0] + "html");
+        return {
+            caseUrl: ca,
+            pageUrl: pageUrl
+        };
+    });
+
+    if(config.length > 0) {
+        return config;
+    } else {
+        return null;
+    }
 }
