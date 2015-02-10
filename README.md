@@ -1,5 +1,7 @@
 # elves
 
+[![Join the chat at https://gitter.im/ilife5/elves](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ilife5/elves?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > An easy, lightweight, headless test tool for avalon.oniui。
 
 Based on **phantomJs**, support **mocha chai and jquery**。
