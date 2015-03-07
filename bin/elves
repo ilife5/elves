@@ -128,10 +128,7 @@ function matchHandler() {
 
     config = cases.map(function(ca) {
         var pageUrl = path.join(path.dirname(ca), path.basename(ca).match(/.*(?=case\.js)/)[0] + "html");
-        return {
-            caseUrl: ca,
-            pageUrl: pageUrl
-        };
+        return caseHandler(ca, pageUrl);
     });
 
     if(config.length > 0) {
