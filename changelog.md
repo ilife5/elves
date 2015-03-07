@@ -41,3 +41,29 @@ fix bug of join localserver address
 support case search.
 
 If there is a xxx.case.js, then find the xxx.html. If match, generate the config.
+
+> 0.0.8
+
++ lib/config/pc.json
++ lib/config/touch.json
++ lib/vendor/phantom-limb.js
++ lib/vendor/zepto.min.js
++ lib/vendor/zepto.touch.js
+
+features:
+
++ support set localserver.
+
+    ```
+elves -l "http://localhost"
+    ```
+
++ support set testType
+
+    for touch
+
+    ```
+elves -t "touch"
+    ```
+
+    The runner will import phantom-limb, zepto.min.js, zepto.touch.js.
