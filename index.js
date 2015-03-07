@@ -5,8 +5,8 @@ module.exports = {
     install: function() {
         server.install();
     },
-    run: function(config) {
-        var runner = Runner(config);
+    run: function(cases, program) {
+        var runner = Runner(cases, program);
         runner.on("end", function() {
             server.close();
         });

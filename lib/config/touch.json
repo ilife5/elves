@@ -1,0 +1,8 @@
+[
+  "vendor/jquery-1.11.2.min.js",
+  "vendor/chai-jquery.js",
+  "vendor/jquery.simulate.js",
+  "vendor/phantomLimb.js",
+  "vendor/zepto.min.js",
+  "vendor/zepto.touch.js"
+]

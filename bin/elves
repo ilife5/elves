@@ -23,11 +23,14 @@ program
         '\n' +
         '         elves [options] <caseUrl> <pageUrl>')
     .option('-r, --remoteServer', "take test on remote server")
-    .option('-c, --configFile <file>', "config file path. defaults to test/config.json")
+    .option('-c, --configFile <path>', "config file path. defaults to test/config.json")
+    .option('-t, --testType <string>', "config test type, defaults to oniui")
+    .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
     .parse(process.argv);
 
 program.configFile = program.configFile || "test/config.json";
 program.localServer = program.localServer || "http://localhost:3000";
+program.testType = program.testType || "oniui";
 
 var config = [];
 
@@ -75,7 +78,7 @@ if( !config || !config.length > 0 ) {
 console.log(chalk.green("[elves log]  ") + config.length + " cases testing，");
 elves.install();
 
-elves.run(config);
+elves.run(config, program);
 
 //=== util ===
 
