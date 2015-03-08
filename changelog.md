@@ -67,3 +67,7 @@ elves -t "touch"
     ```
 
     The runner will import phantom-limb, zepto.min.js, zepto.touch.js.
+
+bugs:
+
++ mocha runner emit end events fail
