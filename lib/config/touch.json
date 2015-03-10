@@ -1,10 +1,8 @@
 [
-  "vendor/jquery-1.11.2.min.js",
-  "vendor/chai-jquery.js",
-  "vendor/jquery.simulate.js",
-  "vendor/phantom-limb.js",
   "vendor/zepto.min.js",
   "vendor/zepto.touch.js",
+  "vendor/zepto.simulate.js",
+  "vendor/phantom-limb.js",
   "vendor/bililiteRange.js",
-  "vendor/jquery.sendkeys.js"
+  "vendor/zepto.sendkeys.js"
 ]
