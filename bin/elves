@@ -25,12 +25,14 @@ program
     .option('-r, --remoteServer', "take test on remote server")
     .option('-c, --configFile <path>', "config file path. defaults to test/config.json")
     .option('-t, --testType <string>', "config test type, defaults to oniui")
+    .option('-a, --assertions <path>', "assertions, defaults to chai")
     .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
     .parse(process.argv);
 
 program.configFile = program.configFile || "test/config.json";
 program.localServer = program.localServer || "http://localhost:3000";
 program.testType = program.testType || "oniui";
+program.assertions = program.assertions || "chai";
 
 var config = [];
 

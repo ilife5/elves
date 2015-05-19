@@ -39,10 +39,14 @@ Usage: elves [options]
 
 Options:
 
--h, --help               output usage information
--V, --version            output the version number
--r, --remoteServer       take test on remote server
--c, --configFile <file>  config file path. Default is test/config.json
+    -h, --help                  output usage information
+    -V, --version               output the version number
+    -r, --remoteServer          take test on remote server
+    -c, --configFile <path>     config file path. defaults to test/config.json
+    -t, --testType <string>     config test type, defaults to oniui
+    -a, --assertions <path>     assertions, defaults to chai
+    -l, --localServer <string>  config localServer address, defaults to http://localhost:3000
+
 ```
 
 ### hello world
@@ -162,3 +166,13 @@ Then we can get the reports.
 
     ✔ 1 test complete (6ms)
 ```
+
+### assertions
+
+Elves support changing assertions, includes **chai** and **expect**.
+
+```
+//test with expect
+elves -a "expect"
+```
+

@@ -71,3 +71,15 @@ elves -t "touch"
 bugs:
 
 + mocha runner emit end events fail
+
+> 0.1.1
+
++ lib/vendor/expect.js
+
+features:
+
++ add assertions option
+
+    ```
+elves -a "expect"
+    ```

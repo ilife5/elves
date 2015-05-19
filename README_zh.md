@@ -159,3 +159,12 @@ elves "example/remote server/remote server.js" "http://qunar.com" -r
     ✔ 1 test complete (6ms)
 ```
 
+### 断言库的切换
+
+Elves支持**chai**以及**expect**断言库，默认为**chai**.
+
+```
+//用expect库进行测试
+elves -a "expect"
+```
+
