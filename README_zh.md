@@ -168,3 +168,24 @@ Elves支持**chai**以及**expect**断言库，默认为**chai**.
 elves -a "expect"
 ```
 
+### 设置reporter
+
+通过mocha setup使用的配置文件进行设置
+
+```
+//setupOptions.js
+if(typeof pageStatic === "undefined") {
+    pageStatic = {};
+}
+
+pageStatic.mochaSetupOptions = {
+    ui: "bdd",
+    reporter: 'list',
+    ignoreLeaks: true
+};
+```
+
+```
+elves -M setupOptions.js
+```
+

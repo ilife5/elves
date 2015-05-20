@@ -176,3 +176,23 @@ Elves support changing assertions, includes **chai** and **expect**.
 elves -a "expect"
 ```
 
+### reporters
+
+Elves support changing reporters through change setupOptions
+
+```
+//setupOptions.js
+if(typeof pageStatic === "undefined") {
+    pageStatic = {};
+}
+
+pageStatic.mochaSetupOptions = {
+    ui: "bdd",
+    reporter: 'list',
+    ignoreLeaks: true
+};
+```
+
+```
+elves -M setupOptions.js
+```

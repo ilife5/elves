@@ -83,3 +83,30 @@ features:
     ```
 elves -a "expect"
     ```
+
+> 0.1.2
+
+### reporters
+
++ lib/config/pageStatic.js
+
+features:
+
++ Elves support changing reporters through change setupOptions
+
+```
+//setupOptions.js
+if(typeof pageStatic === "undefined") {
+    pageStatic = {};
+}
+
+pageStatic.mochaSetupOptions = {
+    ui: "bdd",
+    reporter: 'list',
+    ignoreLeaks: true
+};
+```
+
+```
+elves -M setupOptions.js
+```

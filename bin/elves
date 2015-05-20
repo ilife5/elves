@@ -27,12 +27,14 @@ program
     .option('-t, --testType <string>', "config test type, defaults to oniui")
     .option('-a, --assertions <path>', "assertions, defaults to chai")
     .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
+    .option('-M, --mochaOptions <path>', "mocha setup options, default ui is bdd, reporter is spec")
     .parse(process.argv);
 
 program.configFile = program.configFile || "test/config.json";
 program.localServer = program.localServer || "http://localhost:3000";
 program.testType = program.testType || "oniui";
 program.assertions = program.assertions || "chai";
+program.mochaOptions = program.mochaOptions? path.resolve(program.mochaOptions): path.join(__dirname, "../lib/config/pageStatic.js");
 
 var config = [];
 
