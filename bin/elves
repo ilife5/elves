@@ -23,14 +23,14 @@ program
         '\n' +
         '         elves [options] <caseUrl> <pageUrl>')
     .option('-r, --remoteServer', "take test on remote server")
-    .option('-c, --configFile <path>', "config file path. defaults to test/config.json")
+    .option('-c, --configFile <path>', "config file path. defaults to test/elves.config")
     .option('-t, --testType <string>', "config test type, defaults to oniui")
     .option('-a, --assertions <path>', "assertions, defaults to chai")
     .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
     .option('-M, --mochaOptions <path>', "mocha setup options, default ui is bdd, reporter is spec")
     .parse(process.argv);
 
-program.configFile = program.configFile || "test/config.json";
+program.configFile = program.configFile || "test/elves.config" || "test/config.json";
 program.localServer = program.localServer || "http://localhost:3000";
 program.testType = program.testType || "oniui";
 program.assertions = program.assertions || "chai";
@@ -42,6 +42,14 @@ var config = [];
 switch(program.args.length) {
     case 0:
 
+        //search test/elves.config
+        console.log(chalk.cyan("[elves log]  ") + "Searching for test/elves.config...");
+        if(config = configHandler()) {
+            break;
+        } else {
+            console.log(chalk.cyan("[elves log]  ") + "Can not find test/elves.config...");
+        }
+
         //search *.case.js
         console.log(chalk.cyan("[elves log]  ") + "Searching for *.case.js...");
         if(config = matchHandler()) {
@@ -50,15 +58,8 @@ switch(program.args.length) {
             console.log(chalk.cyan("[elves log]  ") + "Can not find *.case.js");
         }
 
-        console.log(chalk.cyan("[elves log]  ") + "Searching for test/config.json...");
-        //search test/config.json
-        if(config = configHandler()) {
-            break;
-        } else {
-            console.log(chalk.cyan("[elves log]  ") + "Can not find test/config.json...");
-        }
-        console.log(chalk.cyan("[elves log]  ") + "Searching for test/index.js");
         //search test/index.js
+        console.log(chalk.cyan("[elves log]  ") + "Searching for test/index.js");
         if(config = caseHandler("/test/index.js")) {
             config = [config];
             break;
