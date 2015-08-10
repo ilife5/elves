@@ -24,10 +24,11 @@ program
         '         elves [options] <caseUrl> <pageUrl>')
     .option('-r, --remoteServer', "take test on remote server")
     .option('-c, --configFile <path>', "config file path. defaults to test/elves.config")
-    .option('-t, --testType <string>', "config test type, defaults to oniui")
     .option('-a, --assertions <path>', "assertions, defaults to chai")
     .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
     .option('-M, --mochaOptions <path>', "mocha setup options, default ui is bdd, reporter is spec")
+    .option('-g, --group <string>', "runs a group of tests (i.e. a folder) ")
+    .option('-t, --test <string>', "runs a single test ")
     .parse(process.argv);
 
 program.configFile = program.configFile || "test/elves.config" || "test/config.json";
@@ -35,13 +36,14 @@ program.localServer = program.localServer || "http://localhost:3000";
 program.testType = program.testType || "oniui";
 program.assertions = program.assertions || "chai";
 program.mochaOptions = program.mochaOptions? path.resolve(program.mochaOptions): path.join(__dirname, "../lib/config/pageStatic.js");
+program.group = program.group || "all";
+program.test = program.test || "all";
 
 var config = [];
 
 //server start
 switch(program.args.length) {
     case 0:
-
         //search test/elves.config
         console.log(chalk.cyan("[elves log]  ") + "Searching for test/elves.config...");
         if(config = configHandler()) {
@@ -90,14 +92,25 @@ elves.run(config, program);
 function configHandler(configPath) {
     configPath = configPath || path.join(cwd, program.configFile);
 
-    var config;
+    var config = [], configPrev;
 
     if(fs.existsSync(configPath)) {
-        config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+        configPrev = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
-        config.forEach(function(item, i) {
-            config[i] = caseHandler(item.caseUrl, item.pageUrl);
-        });
+        for(var i = 0, len = configPrev.length; i < len; i++){
+            var item = configPrev[i],
+                itemGroupValid = program.group === "all" || program.group === item.group,
+                itemNameValid = program.test === "all" || program.test === item.test,
+                singleNameFound = program.test !== "all" && program.test === item.test
+
+            if(itemGroupValid && itemNameValid){
+                config.push(caseHandler(item.caseUrl, item.pageUrl));
+            }
+
+            if(singleNameFound){
+                break;
+            }
+        }
 
         config = config.filter(function(item) {
             return item != null;
