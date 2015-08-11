@@ -22,12 +22,13 @@ program
         '         elves [options] <caseUrl>' +
         '\n' +
         '         elves [options] <caseUrl> <pageUrl>')
+    .option('-v, --version ', 'output the version number')
     .option('-r, --remoteServer', "take test on remote server")
     .option('-c, --configFile <path>', "config file path. defaults to test/elves.config")
     .option('-a, --assertions <path>', "assertions, defaults to chai")
     .option('-l, --localServer <string>', "config localServer address, defaults to http://localhost:3000")
     .option('-M, --mochaOptions <path>', "mocha setup options, default ui is bdd, reporter is spec")
-    .option('-g, --group <string>', "runs a group of tests (i.e. a folder) ")
+    .option('-g, --group <string>', "runs a group of tests ")
     .option('-t, --test <string>', "runs a single test ")
     .parse(process.argv);
 
