@@ -28,17 +28,23 @@ npm install elves --save
 
 
 ```
-Usage: elves [options]
-       elves [options] <config>
-       elves [options] <caseUrl>
-       elves [options] <caseUrl> <pageUrl>
+Usage:
+
+    elves [options]
+    elves [options] <config>
+    elves [options] <caseUrl>
+    elves [options] <caseUrl> <pageUrl>
 
 Options:
 
--h, --help               output usage information
--V, --version            output the version number
--r, --remoteServer       take test on remote server
--c, --configFile <file>  config file path. Default is test/config.json
+    -h, --help                  output usage information
+    -v, --version               output the version number
+    -r, --remoteServer          take test on remote server
+    -c, --configFile <path>     config file path. defaults to test/elves.config
+    -a, --assertions <path>     assertions, defaults to chai
+    -l, --localServer <string>  config localServer address, defaults to http://localhost:3000
+    -g, --group <string>        runs a group of tests
+    -t, --test <string>         runs a single test
 ```
 
 ### hello world
