@@ -64,9 +64,12 @@
                 }
             })
             .on('touchstart MSPointerDown pointerdown', function(e){
+
                 if((_isPointerType = isPointerEventType(e, 'down')) &&
                     !isPrimaryTouch(e)) return
+
                 firstTouch = _isPointerType ? e : e.touches[0]
+
                 if (e.touches && e.touches.length === 1 && touch.x2) {
                     // Clear out touch movement data if we have it sticking around
                     // This can occur if touchcancel doesn't fire due to preventDefault, etc.
@@ -78,6 +81,7 @@
                 touch.el = $('tagName' in firstTouch.target ?
                     firstTouch.target : firstTouch.target.parentNode)
                 touchTimeout && clearTimeout(touchTimeout)
+
                 touch.x1 = firstTouch.pageX
                 touch.y1 = firstTouch.pageY
                 if (delta > 0 && delta <= 250) touch.isDoubleTap = true
@@ -98,6 +102,7 @@
                 deltaY += Math.abs(touch.y1 - touch.y2)
             })
             .on('touchend MSPointerUp pointerup', function(e){
+
                 if((_isPointerType = isPointerEventType(e, 'up')) &&
                     !isPrimaryTouch(e)) return
                 cancelLongTap()
@@ -113,14 +118,15 @@
                     }, 0)
 
                 // normal tap
-                else if ('last' in touch)
+                else if ('last' in touch){
+
                 // don't fire tap when delta position changed by more than 30 pixels,
                 // for instance when moving to a point and back to origin
                     if (deltaX < 30 && deltaY < 30) {
+
                         // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
                         // ('tap' fires before 'scroll')
                         tapTimeout = setTimeout(function() {
-
                             // trigger universal 'tap' with the option to cancelTouch()
                             // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)
                             var event = $.Event('tap')
@@ -129,7 +135,10 @@
 
                             // trigger double tap immediately
                             if (touch.isDoubleTap) {
-                                if (touch.el) touch.el.trigger('doubleTap')
+                                if (touch.el) {
+                                    touch.el.trigger('doubleTap')
+                                }
+
                                 touch = {}
                             }
 
@@ -145,6 +154,7 @@
                     } else {
                         touch = {}
                     }
+                }
                 deltaX = deltaY = 0
 
             })
