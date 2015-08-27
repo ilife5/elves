@@ -155,6 +155,21 @@ $("selector").simulate("tap"); // gesture
 - press(longTap)
 - swipe & swipe(Right|Left|Up|Down)
 
+### 进行异步测试
+
+异步测试与Mocha中的方法是一样的.参考[Mocha.js](http://mochajs.org/#asynchronous-code).
+利用elves，我们也可以方便地延迟断言。
+
+```
+it("should show press", function(done) {
+    container.simulate("press")
+
+    delay(done, function() {
+        expect(content.text()).to.equal("press");
+    }, 1000);
+})
+```
+
 ### 在远程页面上测试用例
 
 Elves支持在远程页面上执行测试用例。
