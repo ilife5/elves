@@ -153,7 +153,7 @@ support events:
 - mouse(over|out|down|up|move)
 - key(up|down|press)
 
-support gestures(they are defined refered to [Zepto.js](http://zeptojs.com/#Touch events) and [Hammer.js](http://hammerjs.github.io/)):
+support gestures(defination refered to [Zepto.js](http://zeptojs.com/#Touch events) and [Hammer.js](http://hammerjs.github.io/)):
 
 - tap
 - doubleTap
