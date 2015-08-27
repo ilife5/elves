@@ -133,6 +133,43 @@ elves
 
 我们就可以得到测试结果了。
 
+### 模拟事件和触摸手势
+
+jQuery是被整合进Elves里面的, 所以我们可以用它来模拟事件和触摸手势。
+
+```
+$("selector").simulate("click"); // event
+$("selector").simulate("tap"); // gesture
+```
+
+支持事件类型:
+
+- click
+- mouse(over|out|down|up|move)
+- key(up|down|press)
+
+支持手势类型(定义可参考[Zepto.js](http://zeptojs.com/#Touch events)和[Hammer.js](http://hammerjs.github.io/)):
+
+- tap
+- doubleTap
+- press(longTap)
+- swipe & swipe(Right|Left|Up|Down)
+
+### 进行异步测试
+
+异步测试与Mocha中的方法是一样的.参考[Mocha.js](http://mochajs.org/#asynchronous-code).
+利用elves，我们也可以方便地延迟断言。
+
+```
+it("should show press", function(done) {
+    container.simulate("press")
+
+    delay(done, function() {
+        expect(content.text()).to.equal("press");
+    }, 1000);
+})
+```
+
 ### 在远程页面上测试用例
 
 Elves支持在远程页面上执行测试用例。

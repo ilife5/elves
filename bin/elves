@@ -34,7 +34,6 @@ program
 
 program.configFile = program.configFile || "test/elves.config" || "test/config.json";
 program.localServer = program.localServer || "http://localhost:3000";
-program.testType = program.testType || "oniui";
 program.assertions = program.assertions || "chai";
 program.mochaOptions = program.mochaOptions? path.resolve(program.mochaOptions): path.join(__dirname, "../lib/config/pageStatic.js");
 program.group = program.group || "all";

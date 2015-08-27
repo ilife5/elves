@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.2, user-scalable=1" />
+    <title></title>
+    <script src="zepto.min.js"></script>
+    <script src="zepto.touch.js"></script>
+</head>
+<body>
+<style>
+    html, body, .container{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        padding: 20px;
+    }
+
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        background-color: #666;
+        color: #fff;
+    }
+
+    .content{
+        font-size: 30px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="content">（touch）</h1>
+</div>
+
+<script>
+    var container = $(".container"),
+        content = $(".content")
+
+    container.tap(function(){
+//        console.log("tap")
+        content.text("tap")
+    })
+
+    container.doubleTap(function(){
+//        console.log("doubleTap")
+        content.text("doubleTap")
+    })
+
+    container.longTap(function(){
+//        console.log("press")
+        content.text("press")
+    })
+
+    container.swipeLeft(function(){
+        content.text("swipeLeft")
+    })
+
+    container.swipeRight(function(){
+        content.text("swipeRight")
+    })
+
+    container.swipeUp(function(){
+        content.text("swipeUp")
+    })
+
+    container.swipeDown(function(){
+        content.text("swipeDown")
+    })
+</script>
+</body>
+</html>
