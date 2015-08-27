@@ -160,6 +160,20 @@ support gestures(defination refered to [Zepto.js](http://zeptojs.com/#Touch even
 - press(longTap)
 - swipe & swipe(Right|Left|Up|Down)
 
+### testing asynchronous code 
+
+It's the same to test with Mocha.Refered to [Mocha](http://mochajs.org/#asynchronous-code).
+With elves, you can also delay your assertions.
+
+```
+it("should show swipeRight", function(done) {
+    container.simulate("press")
+
+    delay(done, function() {
+        expect(content.text()).to.equal("press");
+    }, 1000);
+})
+```
 
 ### test on remote server
 
