@@ -138,6 +138,29 @@ elves
 
 Then we can get the reports.
 
+### simulate events and touch gestures
+
+jQuery is integrated in Elves, and we can use it simulate events and touch gestures.
+
+```
+$("selector").simulate("click"); // event
+$("selector").simulate("tap"); // gesture
+```
+
+support events:
+
+- click
+- mouse(over|out|down|up|move)
+- key(up|down|press)
+
+support gestures(they are defined refered to [Zepto.js](http://zeptojs.com/#Touch events) and [Hammer.js](http://hammerjs.github.io/)):
+
+- tap
+- doubleTap
+- press(longTap)
+- swipe & swipe(Right|Left|Up|Down)
+
+
 ### test on remote server
 
 Elves also support test on remote server. 
